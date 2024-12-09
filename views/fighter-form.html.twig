@@ -1,0 +1,68 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h2 class="text-center">
+    {% if fighter is defined %}
+        Kämpfer bearbeiten
+    {% else %}
+        Kämpfer hinzufügen
+    {% endif %}
+</h2>
+
+<form action="{% if fighter is defined %}/fighters/edit/{{ fighter.id }}{% else %}/fighters/create{% endif %}" method="POST">
+    <div class="mb-3">
+        <label for="full_name" class="form-label">Vollständiger Name</label>
+        <input type="text" class="form-control" id="full_name" name="full_name" value="{% if fighter is defined %}{{ fighter.full_name }}{% endif %}" required>
+    </div>
+    <div class="mb-3">
+        <label for="fighter_name" class="form-label">Kämpfername</label>
+        <input type="text" class="form-control" id="fighter_name" name="fighter_name" value="{% if fighter is defined %}{{ fighter.fighter_name }}{% endif %}" required>
+    </div>
+    <div class="mb-3">
+        <label for="birthdate" class="form-label">Geburtsdatum</label>
+        <input type="date" class="form-control" id="birthdate" name="birthdate" value="{% if fighter is defined %}{{ fighter.birthdate }}{% endif %}" required>
+    </div>
+    <div class="mb-3">
+        <label for="height" class="form-label">Größe (cm)</label>
+        <input type="number" class="form-control" id="height" name="height" value="{% if fighter is defined %}{{ fighter.height }}{% endif %}" required>
+    </div>
+    <div class="mb-3">
+        <label for="weight" class="form-label">Gewicht (kg)</label>
+        <input type="number" class="form-control" id="weight" name="weight" value="{% if fighter is defined %}{{ fighter.weight }}{% endif %}" required>
+    </div>
+    <div class="mb-3">
+        <label for="weight_class_id" class="form-label">Gewichtsklasse</label>
+        <select id="weight_class_id" name="weight_class_id" class="form-control" required>
+            {% for weightClass in weightClasses %}
+                <option value="{{ weightClass.id }}" {% if fighter is defined and fighter.weight_class_id == weightClass.id %}selected{% endif %}>
+                    {{ weightClass.class_name }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="city_id" class="form-label">Stadt</label>
+        <select id="city_id" name="city_id" class="form-control" required>
+            {% for city in cities %}
+                <option value="{{ city.id }}" {% if fighter is defined and fighter.city_id == city.id %}selected{% endif %}>
+                    {{ city.name }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="experience_level" class="form-label">Erfahrungslevel</label>
+        <select id="experience_level" name="experience_level" class="form-control" required>
+            <option value="Amateur" {% if fighter is defined and fighter.experience_level == "Amateur" %}selected{% endif %}>
+                Amateur
+            </option>
+            <option value="Profi" {% if fighter is defined and fighter.experience_level == "Profi" %}selected{% endif %}>
+                Profi
+            </option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">
+        {% if fighter is defined %}Änderungen speichern{% else %}Hinzufügen{% endif %}
+    </button>
+</form>
+{% endblock %}

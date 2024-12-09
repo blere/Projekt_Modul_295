@@ -1,0 +1,62 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h2 class="text-center">
+    {% if fight is defined %}Kampf bearbeiten{% else %}Neuen Kampf hinzufügen{% endif %}
+</h2>
+
+<form action="{% if fight is defined %}/fights/edit/{{ fight.id }}{% else %}/fights/create{% endif %}" method="POST">
+    <div class="mb-3">
+        <label for="fighter1_id" class="form-label">Kämpfer 1</label>
+        <select id="fighter1_id" name="fighter1_id" class="form-control" required>
+            {% for fighter in fighters %}
+                <option value="{{ fighter.id }}" {% if fight is defined and fighter.id == fight.fighter1_id %}selected{% endif %}>
+                    {{ fighter.fighter_name }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="fighter2_id" class="form-label">Kämpfer 2</label>
+        <select id="fighter2_id" name="fighter2_id" class="form-control" required>
+            {% for fighter in fighters %}
+                <option value="{{ fighter.id }}" {% if fight is defined and fighter.id == fight.fighter2_id %}selected{% endif %}>
+                    {{ fighter.fighter_name }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="arena_id" class="form-label">Arena</label>
+        <select id="arena_id" name="arena_id" class="form-control" required>
+            {% for arena in arenas %}
+                <option value="{{ arena.id }}" {% if fight is defined and arena.id == fight.arena_id %}selected{% endif %}>
+                    {{ arena.name }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="date" class="form-label">Datum</label>
+        <input type="date" id="date" name="date" class="form-control" value="{% if fight is defined %}{{ fight.date }}{% endif %}" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="contact_type" class="form-label">Kontaktart</label>
+        <select id="contact_type" name="contact_type" class="form-control" required>
+            <option value="Leichtkontakt" {% if fight is defined and fight.contact_type == 'Leichtkontakt' %}selected{% endif %}>Leichtkontakt</option>
+            <option value="Vollkontakt" {% if fight is defined and fight.contact_type == 'Vollkontakt' %}selected{% endif %}>Vollkontakt</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="result" class="form-label">Ergebnis</label>
+        <input type="text" id="result" name="result" class="form-control" value="{% if fight is defined %}{{ fight.result }}{% endif %}">
+    </div>
+
+    <button type="submit" class="btn btn-primary">{% if fight is defined %}Änderungen speichern{% else %}Kampf hinzufügen{% endif %}</button>
+</form>
+{% endblock %}

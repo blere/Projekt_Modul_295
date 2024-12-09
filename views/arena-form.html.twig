@@ -1,0 +1,58 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h2 class="text-center">
+    {% if arena is defined %}
+        Arena bearbeiten
+    {% else %}
+        Neue Arena erstellen
+    {% endif %}
+</h2>
+
+<form action="{% if arena is defined %}/arenas/edit/{{ arena.id }}{% else %}/arenas/create{% endif %}" method="POST">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name der Arena</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="name" 
+            name="name" 
+            value="{% if arena is defined %}{{ arena.name }}{% endif %}" 
+            required>
+    </div>
+
+    <div class="mb-3">
+        <label for="city_id" class="form-label">Stadt</label>
+        <select id="city_id" name="city_id" class="form-control" required>
+            {% for city in cities %}
+                <option 
+                    value="{{ city.id }}" 
+                    {% if arena is defined and city.id == arena.city_id %}selected{% endif %}>
+                    {{ city.name }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label for="weight_class_id" class="form-label">Gewichtsklasse</label>
+        <select id="weight_class_id" name="weight_class_id" class="form-control" required>
+            {% for weightClass in weightClasses %}
+                <option 
+                    value="{{ weightClass.id }}" 
+                    {% if arena is defined and weightClass.id == arena.weight_class_id %}selected{% endif %}>
+                    {{ weightClass.class_name }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        {% if arena is defined %}
+            Aktualisieren
+        {% else %}
+            Hinzufügen
+        {% endif %}
+    </button>
+</form>
+{% endblock %}

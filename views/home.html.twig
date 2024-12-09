@@ -1,0 +1,87 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<div class="text-center mb-4">
+    <h1>Willkommen zum Boxkampf Management</h1>
+    <p>Verwalten Sie Kämpfer, Arenen und Kämpfe ganz einfach.</p>
+</div>
+
+<!-- Kämpfer Tabelle -->
+<h2>Kämpfer</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Kämpfername</th>
+            <th>Geburtsdatum</th>
+            <th>Größe</th>
+            <th>Gewicht</th>
+            <th>Gewichtsklasse</th>
+            <th>Stadt</th>
+            <th>Erfahrungslevel</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fighter in fighters %}
+        <tr>
+            <td>{{ fighter.full_name }}</td>
+            <td>{{ fighter.fighter_name }}</td>
+            <td>{{ fighter.birthdate }}</td>
+            <td>{{ fighter.height }}</td>
+            <td>{{ fighter.weight }}</td>
+            <td>{{ fighter.weight_class_name }}</td>
+            <td>{{ fighter.city_name }}</td>
+            <td>{{ fighter.experience_level }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Arenen Tabelle -->
+<h2>Arenen</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Stadt</th>
+            <th>Gewichtsklasse</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for arena in arenas %}
+        <tr>
+            <td>{{ arena.name }}</td>
+            <td>{{ arena.city_name }}</td>
+            <td>{{ arena.weight_class_name }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Kämpfe Tabelle -->
+<h2>Kämpfe</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Kämpfer 1</th>
+            <th>Kämpfer 2</th>
+            <th>Arena</th>
+            <th>Datum</th>
+            <th>Kontaktart</th>
+            <th>Ergebnis</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fight in fights %}
+        <tr>
+            <td>{{ fight.fighter1_name }}</td>
+            <td>{{ fight.fighter2_name }}</td>
+            <td>{{ fight.arena_name }}</td>
+            <td>{{ fight.date }}</td>
+            <td>{{ fight.contact_type }}</td>
+            <td>{{ fight.result }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h2 class="text-center">Städte Übersicht</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Stadtname</th>
+            <th>Aktionen</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for city in cities %}
+        <tr>
+            <td>{{ city.id }}</td>
+            <td>{{ city.name }}</td>
+            <td>
+                <a href="/cities/edit/{{ city.id }}" class="btn btn-sm btn-warning">Bearbeiten</a>
+                <a href="/cities/delete/{{ city.id }}" class="btn btn-sm btn-danger">Löschen</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="/cities/create" class="btn btn-success">Neue Stadt hinzufügen</a>
+{% endblock %}

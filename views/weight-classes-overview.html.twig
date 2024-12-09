@@ -1,0 +1,36 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h2 class="text-center">Gewichtsklassen Übersicht</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name der Gewichtsklasse</th>
+            <th>Aktionen</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for weight_class in weight_classes %}
+        <tr>
+            <td>{{ weight_class.id }}</td>
+            <td>{{ weight_class.class_name }}</td>
+            <td>
+                <a href="/weight-classes/edit/{{ weight_class.id }}" class="btn btn-warning btn-sm">Bearbeiten</a>
+                <a href="/weight-classes/delete/{{ weight_class.id }}" class="btn btn-danger btn-sm" 
+                   onclick="return confirm('Sind Sie sicher, dass Sie diese Gewichtsklasse löschen möchten?');">
+                    Löschen
+                </a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="3" class="text-center">Keine Gewichtsklassen gefunden.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="/weight-classes/create" class="btn btn-success">Neue Gewichtsklasse hinzufügen</a>
+{% endblock %}

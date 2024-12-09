@@ -1,0 +1,38 @@
+{% extends "layout.html.twig" %}
+
+{% block content %}
+<h2 class="text-center">
+    {% if weight_class %}
+        Gewichtsklasse bearbeiten
+    {% else %}
+        Neue Gewichtsklasse hinzufügen
+    {% endif %}
+</h2>
+
+<form 
+    action="{% if weight_class %}/weight-classes/edit/{{ weight_class.id }}{% else %}/weight-classes/create{% endif %}" 
+    method="POST"
+>
+    <div class="mb-3">
+        <label for="class_name" class="form-label">Name der Gewichtsklasse</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="class_name" 
+            name="class_name" 
+            value="{{ weight_class.class_name if weight_class }}" 
+            required
+        >
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        {% if weight_class %}
+            Speichern
+        {% else %}
+            Hinzufügen
+        {% endif %}
+    </button>
+</form>
+
+<a href="/weight-classes" class="btn btn-secondary mt-3">Zurück zur Übersicht</a>
+{% endblock %}
