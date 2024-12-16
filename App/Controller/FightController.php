@@ -8,18 +8,14 @@ use App\Model\Arena;
 
 class FightController extends DefaultController
 {
-    /**
-     * Zeigt die Liste aller Kämpfe.
-     */
+    // Zeigt die Liste aller Kämpfe.
     public function index()
     {
         $fights = Fight::all(); // Holt alle Kämpfe
         $this->render("fights-overview.html.twig", ["fights" => $fights]);
     }
 
-    /**
-     * Zeigt das Formular zum Erstellen eines neuen Kampfes.
-     */
+    // Zeigt das Formular zum Erstellen eines neuen Kampfes.
     public function create()
     {
         $arenas = Arena::all(); // Holt alle Arenen
@@ -33,7 +29,6 @@ class FightController extends DefaultController
 
     /**
      * Speichert einen neuen Kampf.
-     *
      * @param array $data Die Formulardaten
      */
     public function store(array $data)
@@ -63,7 +58,6 @@ class FightController extends DefaultController
 
     /**
      * Zeigt das Formular zum Bearbeiten eines bestehenden Kampfes.
-     *
      * @param int $id Die ID des zu bearbeitenden Kampfes
      */
     public function edit(int $id)
@@ -85,7 +79,6 @@ class FightController extends DefaultController
 
     /**
      * Aktualisiert einen bestehenden Kampf.
-     *
      * @param int $id Die ID des Kampfes
      * @param array $data Die aktualisierten Daten
      */
@@ -121,7 +114,6 @@ class FightController extends DefaultController
 
     /**
      * Löscht einen Kampf.
-     *
      * @param int $id Die ID des Kampfes
      */
     public function delete(int $id)

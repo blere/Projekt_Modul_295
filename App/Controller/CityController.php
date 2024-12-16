@@ -6,9 +6,7 @@ use App\Model\City;
 
 class CityController extends DefaultController
 {
-    /**
-     * Zeigt eine Liste aller Städte an.
-     */
+    //Zeigt eine Liste aller Städte an.
     public function index()
     {
         $cities = City::all(); // Holt alle Städte aus der Datenbank
@@ -17,7 +15,6 @@ class CityController extends DefaultController
 
     /**
      * Speichert eine neue Stadt in der Datenbank.
-     *
      * @param array $data Eingabedaten für die neue Stadt
      */
     public function store(array $data)
@@ -41,7 +38,6 @@ class CityController extends DefaultController
 
     /**
      * Löscht eine Stadt aus der Datenbank.
-     *
      * @param int $id ID der zu löschenden Stadt
      */
     public function delete(int $id)

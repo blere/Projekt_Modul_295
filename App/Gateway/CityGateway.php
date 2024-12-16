@@ -9,7 +9,6 @@ class CityGateway extends BasicTableGateway
 
     /**
      * Findet eine Stadt anhand der ID.
-     *
      * @param int $id Die ID der Stadt
      * @return array|null Gibt die Stadt als Array zurück oder null, falls nicht gefunden
      */
@@ -27,7 +26,6 @@ class CityGateway extends BasicTableGateway
 
     /**
      * Löscht eine Stadt anhand der ID.
-     *
      * @param int $id Die ID der Stadt
      * @return void
      */

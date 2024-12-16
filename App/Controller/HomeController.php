@@ -8,9 +8,7 @@ use App\Model\Fight;
 
 class HomeController extends DefaultController
 {
-    /**
-     * Zeigt die Startseite an, inklusive Kämpfer-, Arena- und Kampf-Übersicht.
-     */
+    // Zeigt die Startseite an, inklusive Kämpfer-, Arena- und Kampf-Übersicht.
     public function index()
     {
         $this->checkAuthentication(); // Überprüft, ob der Benutzer authentifiziert ist

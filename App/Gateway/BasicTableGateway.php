@@ -10,7 +10,7 @@ class BasicTableGateway
     protected PDO $connection; 
     protected string $table; 
 
-    //Konstruktor: Stellt die Verbindung zur MySQL-Datenbank her und aktiviert den Fehler-Modus.
+    // Konstruktor: Stellt die Verbindung zur MySQL-Datenbank her und aktiviert den Fehler-Modus.
     public function __construct()
     {
         $this->connection = new PDO("mysql:host=mysql;dbname=boxkampf_management", "root", "test05");
@@ -27,7 +27,7 @@ class BasicTableGateway
         return $statement->fetchAll(PDO::FETCH_ASSOC); // Gibt die Ergebnisse als Array zurück
     }
 
-    //Fügt einen neuen Eintrag in die Tabelle ein.
+    // Fügt einen neuen Eintrag in die Tabelle ein.
     public function insert(array $data): int
     {
         // Erstellt dynamisch die SQL-INSERT-Anweisung mit Platzhaltern
@@ -39,7 +39,7 @@ class BasicTableGateway
         return (int)$this->connection->lastInsertId(); // Gibt die ID des eingefügten Eintrags zurück
     }
 
-    //Aktualisiert einen bestehenden Eintrag.
+    // Aktualisiert einen bestehenden Eintrag.
     public function update(int $id, array $data): void
     {
         // Erstellt dynamisch die SQL-UPDATE-Anweisung für die Spalten

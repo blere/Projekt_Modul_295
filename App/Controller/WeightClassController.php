@@ -6,18 +6,14 @@ use App\Model\WeightClass;
 
 class WeightClassController extends DefaultController
 {
-    /**
-     * Zeigt eine Liste aller Gewichtsklassen an.
-     */
+    // Zeigt eine Liste aller Gewichtsklassen an.
     public function index()
     {
         $weightClasses = WeightClass::all(); // Holt alle Gewichtsklassen aus der Datenbank
         $this->render("weight-classes-overview.html.twig", ["weightClasses" => $weightClasses]); // Übergibt die Gewichtsklassen an die View
     }
 
-    /**
-     * Zeigt das Formular zum Erstellen einer neuen Gewichtsklasse.
-     */
+    // Zeigt das Formular zum Erstellen einer neuen Gewichtsklasse.
     public function create()
     {
         $this->render("weight-class-form.html.twig"); // Zeigt das Formular für die Gewichtsklasse
@@ -25,7 +21,6 @@ class WeightClassController extends DefaultController
 
     /**
      * Speichert eine neue Gewichtsklasse in der Datenbank.
-     *
      * @param array $data Eingabedaten für die neue Gewichtsklasse
      */
     public function store(array $data)
@@ -48,7 +43,6 @@ class WeightClassController extends DefaultController
 
     /**
      * Zeigt das Formular zum Bearbeiten einer Gewichtsklasse.
-     *
      * @param int $id ID der zu bearbeitenden Gewichtsklasse
      */
     public function edit(int $id)
@@ -63,7 +57,6 @@ class WeightClassController extends DefaultController
 
     /**
      * Aktualisiert eine bestehende Gewichtsklasse.
-     *
      * @param int $id ID der Gewichtsklasse
      * @param array $data Eingabedaten für die Aktualisierung
      */
@@ -90,7 +83,6 @@ class WeightClassController extends DefaultController
 
     /**
      * Löscht eine Gewichtsklasse.
-     *
      * @param int $id ID der Gewichtsklasse
      */
     public function delete(int $id)

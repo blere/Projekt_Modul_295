@@ -8,7 +8,6 @@ class ArenaGateway extends BasicTableGateway
 
     /**
      * Ruft alle Arenen mit ihren zugehörigen Städten und Gewichtsklassen ab.
-     *
      * @return array Eine Liste aller Arenen mit zusätzlichen Informationen
      */
     public function all(): array
@@ -33,7 +32,6 @@ class ArenaGateway extends BasicTableGateway
 
     /**
      * Findet eine Arena anhand ihrer ID.
-     *
      * @param int $id Die ID der Arena
      * @return array|null Die Arena-Daten oder null, falls nicht gefunden
      */
@@ -58,7 +56,6 @@ class ArenaGateway extends BasicTableGateway
 
     /**
      * Löscht eine Arena anhand ihrer ID.
-     *
      * @param int $id Die ID der zu löschenden Arena
      */
     public function delete(int $id): void

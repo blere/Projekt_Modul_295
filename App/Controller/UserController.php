@@ -6,17 +6,13 @@ use App\Model\User;
 
 class UserController extends DefaultController
 {
-    /**
-     * Zeigt das Login-Formular an.
-     */
+    // Zeigt das Login-Formular an.
     public function loginForm(): void
     {
         $this->render("login.html.twig");
     }
 
-    /**
-     * Zeigt das Registrierungsformular an.
-     */
+    // Zeigt das Registrierungsformular an.
     public function registerForm(): void
     {
         $this->render("register.html.twig");
@@ -96,9 +92,7 @@ class UserController extends DefaultController
         }
     }
 
-    /**
-     * Loggt den Benutzer aus und zerstört die Sitzung.
-     */
+    // Loggt den Benutzer aus und zerstört die Sitzung.
     public function logout(): void
     {
         session_destroy(); // Beendet die Sitzung

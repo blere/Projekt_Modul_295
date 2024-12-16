@@ -8,18 +8,14 @@ use App\Model\WeightClass;
 
 class FighterController extends DefaultController
 {
-    /**
-     * Zeigt die Übersicht aller Kämpfer.
-     */
+    // Zeigt die Übersicht aller Kämpfer.
     public function index()
     {
         $fighters = Fighter::all();
         $this->render("fighters-overview.html.twig", ["fighters" => $fighters]);
     }
 
-    /**
-     * Zeigt das Formular zum Erstellen eines neuen Kämpfers.
-     */
+    //Zeigt das Formular zum Erstellen eines neuen Kämpfers.
     public function create()
     {
         $cities = City::all();
@@ -29,7 +25,6 @@ class FighterController extends DefaultController
 
     /**
      * Speichert einen neuen Kämpfer in der Datenbank.
-     *
      * @param array $data Die Formulardaten des neuen Kämpfers.
      */
     public function store(array $data)
@@ -61,7 +56,6 @@ class FighterController extends DefaultController
 
     /**
      * Zeigt das Formular zum Bearbeiten eines bestehenden Kämpfers.
-     *
      * @param int $id Die ID des zu bearbeitenden Kämpfers.
      */
     public function edit(int $id)
@@ -83,7 +77,6 @@ class FighterController extends DefaultController
 
     /**
      * Aktualisiert die Daten eines bestehenden Kämpfers.
-     *
      * @param int $id Die ID des Kämpfers.
      * @param array $data Die aktualisierten Daten des Kämpfers.
      */
@@ -121,7 +114,6 @@ class FighterController extends DefaultController
 
     /**
      * Löscht einen Kämpfer anhand der ID.
-     *
      * @param int $id
      */
     public function delete(int $id)
