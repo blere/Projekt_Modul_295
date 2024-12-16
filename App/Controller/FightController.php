@@ -134,3 +134,25 @@ class FightController extends DefaultController
         $this->redirect("/fights");
     }
 }
+
+/**
+ * Beschreibung des Codes:
+ * 
+ * - index-Methode:
+ *   Lädt alle Kämpfe aus der Datenbank mittels `Fight::all()` und übergibt sie an die View `fights-overview.html.twig`, um die Liste anzuzeigen.
+ * 
+ * - create-Methode:
+ *   Zeigt ein Formular zum Erstellen eines neuen Kampfes an. Lädt alle Arenen und Kämpfer und übergibt sie an die View `fight-form.html.twig`.
+ * 
+ * - store-Methode:
+ *   Speichert die Daten eines neuen Kampfes in der Datenbank. Bei einem Fehler wird das Formular erneut angezeigt, mit einer Fehlermeldung.
+ * 
+ * - edit-Methode:
+ *   Zeigt das Formular zum Bearbeiten eines bestehenden Kampfes an. Lädt die Details des Kampfes, sowie Arenen und Kämpfer.
+ * 
+ * - update-Methode:
+ *   Aktualisiert die Daten eines bestehenden Kampfes in der Datenbank. Bei einem Fehler wird das Formular erneut mit einer Fehlermeldung angezeigt.
+ * 
+ * - delete-Methode:
+ *   Löscht einen Kampf anhand seiner ID aus der Datenbank. Leitet anschließend zur Kampf-Übersicht weiter.
+ */

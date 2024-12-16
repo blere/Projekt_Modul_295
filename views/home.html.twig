@@ -2,86 +2,97 @@
 
 {% block content %}
 <div class="text-center mb-4">
+    <!-- Überschrift und Einführung -->
     <h1>Willkommen zum Boxkampf Management</h1>
     <p>Verwalten Sie Kämpfer, Arenen und Kämpfe ganz einfach.</p>
 </div>
 
 <!-- Kämpfer Tabelle -->
 <h2>Kämpfer</h2>
-<table class="table table-striped">
+<table class="table table-striped"> <!-- Tabelle mit gestreifter Darstellung -->
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Kämpfername</th>
-            <th>Geburtsdatum</th>
-            <th>Größe</th>
-            <th>Gewicht</th>
-            <th>Gewichtsklasse</th>
-            <th>Stadt</th>
-            <th>Erfahrungslevel</th>
+            <th>Name</th> <!-- Spaltenüberschrift für den vollständigen Namen -->
+            <th>Kämpfername</th> <!-- Spaltenüberschrift für den Kämpfernamen -->
+            <th>Geburtsdatum</th> <!-- Spaltenüberschrift für das Geburtsdatum -->
+            <th>Größe</th> <!-- Spaltenüberschrift für die Größe -->
+            <th>Gewicht</th> <!-- Spaltenüberschrift für das Gewicht -->
+            <th>Gewichtsklasse</th> <!-- Spaltenüberschrift für die Gewichtsklasse -->
+            <th>Stadt</th> <!-- Spaltenüberschrift für die Stadt -->
+            <th>Erfahrungslevel</th> <!-- Spaltenüberschrift für das Erfahrungslevel -->
         </tr>
     </thead>
     <tbody>
-        {% for fighter in fighters %}
+        {% for fighter in fighters %} <!-- Schleife für die Anzeige der Kämpfer -->
         <tr>
-            <td>{{ fighter.full_name }}</td>
-            <td>{{ fighter.fighter_name }}</td>
-            <td>{{ fighter.birthdate }}</td>
-            <td>{{ fighter.height }}</td>
-            <td>{{ fighter.weight }}</td>
-            <td>{{ fighter.weight_class_name }}</td>
-            <td>{{ fighter.city_name }}</td>
-            <td>{{ fighter.experience_level }}</td>
+            <td>{{ fighter.full_name }}</td> <!-- Vollständiger Name -->
+            <td>{{ fighter.fighter_name }}</td> <!-- Kämpfername -->
+            <td>{{ fighter.birthdate }}</td> <!-- Geburtsdatum -->
+            <td>{{ fighter.height }}cm</td> <!-- Größe -->
+            <td>{{ fighter.weight }}kg</td> <!-- Gewicht -->
+            <td>{{ fighter.weight_class_name }}</td> <!-- Gewichtsklasse -->
+            <td>{{ fighter.city_name }}</td> <!-- Stadt -->
+            <td>{{ fighter.experience_level }}</td> <!-- Erfahrungslevel -->
         </tr>
-        {% endfor %}
+        {% endfor %} <!-- Ende der Schleife -->
     </tbody>
 </table>
 
 <!-- Arenen Tabelle -->
 <h2>Arenen</h2>
-<table class="table table-striped">
+<table class="table table-striped"> <!-- Tabelle für Arenen -->
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Stadt</th>
-            <th>Gewichtsklasse</th>
+            <th>Name</th> <!-- Spaltenüberschrift für den Namen der Arena -->
+            <th>Stadt</th> <!-- Spaltenüberschrift für die Stadt der Arena -->
+            <th>Gewichtsklasse</th> <!-- Spaltenüberschrift für die Gewichtsklasse -->
         </tr>
     </thead>
     <tbody>
-        {% for arena in arenas %}
+        {% for arena in arenas %} <!-- Schleife für die Anzeige der Arenen -->
         <tr>
-            <td>{{ arena.name }}</td>
-            <td>{{ arena.city_name }}</td>
-            <td>{{ arena.weight_class_name }}</td>
+            <td>{{ arena.name }}</td> <!-- Name der Arena -->
+            <td>{{ arena.city_name }}</td> <!-- Stadt der Arena -->
+            <td>{{ arena.weight_class_name }}</td> <!-- Gewichtsklasse der Arena -->
         </tr>
-        {% endfor %}
+        {% endfor %} <!-- Ende der Schleife -->
     </tbody>
 </table>
 
 <!-- Kämpfe Tabelle -->
 <h2>Kämpfe</h2>
-<table class="table table-striped">
+<table class="table table-striped"> <!-- Tabelle für Kämpfe -->
     <thead>
         <tr>
-            <th>Kämpfer 1</th>
-            <th>Kämpfer 2</th>
-            <th>Arena</th>
-            <th>Datum</th>
-            <th>Kontaktart</th>
-            <th>Ergebnis</th>
+            <th>Kämpfer 1</th> <!-- Spaltenüberschrift für Kämpfer 1 -->
+            <th>Kämpfer 2</th> <!-- Spaltenüberschrift für Kämpfer 2 -->
+            <th>Arena</th> <!-- Spaltenüberschrift für die Arena -->
+            <th>Datum</th> <!-- Spaltenüberschrift für das Datum -->
+            <th>Kontaktart</th> <!-- Spaltenüberschrift für die Kontaktart -->
+            <th>Ergebnis</th> <!-- Spaltenüberschrift für das Ergebnis -->
         </tr>
     </thead>
     <tbody>
-        {% for fight in fights %}
+        {% for fight in fights %} <!-- Schleife für die Anzeige der Kämpfe -->
         <tr>
-            <td>{{ fight.fighter1_name }}</td>
-            <td>{{ fight.fighter2_name }}</td>
-            <td>{{ fight.arena_name }}</td>
-            <td>{{ fight.date }}</td>
-            <td>{{ fight.contact_type }}</td>
-            <td>{{ fight.result }}</td>
+            <td>{{ fight.fighter1_name }}</td> <!-- Name von Kämpfer 1 -->
+            <td>{{ fight.fighter2_name }}</td> <!-- Name von Kämpfer 2 -->
+            <td>{{ fight.arena_name }}</td> <!-- Name der Arena -->
+            <td>{{ fight.date }}</td> <!-- Datum des Kampfes -->
+            <td>{{ fight.contact_type }}</td> <!-- Kontaktart des Kampfes -->
+            <td>{{ fight.result }}</td> <!-- Ergebnis des Kampfes -->
         </tr>
-        {% endfor %}
+        {% endfor %} <!-- Ende der Schleife -->
     </tbody>
 </table>
 {% endblock %}
+
+{# 
+Beschreibung:
+- Dieses Template bietet eine Übersicht über Kämpfer, Arenen und Kämpfe.
+- Es enthält drei separate Tabellen:
+  1. Kämpfer: Zeigt Details wie Namen, Gewichtsklasse und Stadt.
+  2. Arenen: Zeigt den Namen der Arena, die Stadt und die Gewichtsklasse.
+  3. Kämpfe: Listet die Kämpfer, Arena, Datum, Kontaktart und Ergebnis auf.
+- Jede Tabelle ist mit gestreiftem Design für bessere Lesbarkeit gestaltet.
+#}

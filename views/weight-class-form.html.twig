@@ -3,9 +3,9 @@
 {% block content %}
 <h2 class="text-center">
     {% if weight_class %}
-        Gewichtsklasse bearbeiten
+        Gewichtsklasse bearbeiten <!-- Überschrift, wenn eine bestehende Gewichtsklasse bearbeitet wird -->
     {% else %}
-        Neue Gewichtsklasse hinzufügen
+        Neue Gewichtsklasse hinzufügen <!-- Überschrift, wenn eine neue Gewichtsklasse erstellt wird -->
     {% endif %}
 </h2>
 
@@ -14,25 +14,34 @@
     method="POST"
 >
     <div class="mb-3">
-        <label for="class_name" class="form-label">Name der Gewichtsklasse</label>
+        <label for="class_name" class="form-label">Name der Gewichtsklasse</label> <!-- Eingabefeld für den Namen der Gewichtsklasse -->
         <input 
             type="text" 
             class="form-control" 
             id="class_name" 
             name="class_name" 
-            value="{{ weight_class.class_name if weight_class }}" 
+            value="{{ weight_class.class_name if weight_class }}" <!-- Vorbefüllung des Eingabefelds, wenn Gewichtsklasse existiert -->
             required
         >
     </div>
 
     <button type="submit" class="btn btn-primary">
         {% if weight_class %}
-            Speichern
+            Speichern <!-- Beschriftung des Buttons, wenn eine Gewichtsklasse bearbeitet wird -->
         {% else %}
-            Hinzufügen
+            Hinzufügen <!-- Beschriftung des Buttons, wenn eine neue Gewichtsklasse erstellt wird -->
         {% endif %}
     </button>
 </form>
 
-<a href="/weight-classes" class="btn btn-secondary mt-3">Zurück zur Übersicht</a>
+<a href="/weight-classes" class="btn btn-secondary mt-3">Zurück zur Übersicht</a> <!-- Link zurück zur Übersicht der Gewichtsklassen -->
 {% endblock %}
+
+{#
+Beschreibung:
+- Dieses Template wird verwendet, um eine neue Gewichtsklasse zu erstellen oder eine bestehende zu bearbeiten.
+- Das Formular ist mit Bootstrap gestaltet und enthält ein Eingabefeld für den Namen der Gewichtsklasse.
+- Wenn eine Gewichtsklasse existiert, wird das Eingabefeld mit ihrem Namen vorbefüllt.
+- Je nach Kontext (Bearbeiten oder Erstellen) ändern sich die Überschrift und die Beschriftung des Buttons.
+- Ein zusätzlicher Link ermöglicht es, zur Übersicht der Gewichtsklassen zurückzukehren.
+#}

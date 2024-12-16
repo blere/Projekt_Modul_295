@@ -1,6 +1,7 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
+<!-- Überschrift basierend darauf, ob die Arena bearbeitet oder neu erstellt wird -->
 <h2 class="text-center">
     {% if arena is defined %}
         Arena bearbeiten
@@ -9,7 +10,10 @@
     {% endif %}
 </h2>
 
+<!-- Formular für das Erstellen oder Bearbeiten einer Arena -->
 <form action="{% if arena is defined %}/arenas/edit/{{ arena.id }}{% else %}/arenas/create{% endif %}" method="POST">
+    
+    <!-- Eingabefeld für den Namen der Arena -->
     <div class="mb-3">
         <label for="name" class="form-label">Name der Arena</label>
         <input 
@@ -21,6 +25,7 @@
             required>
     </div>
 
+    <!-- Dropdown-Auswahl für die Stadt -->
     <div class="mb-3">
         <label for="city_id" class="form-label">Stadt</label>
         <select id="city_id" name="city_id" class="form-control" required>
@@ -34,6 +39,7 @@
         </select>
     </div>
 
+    <!-- Dropdown-Auswahl für die Gewichtsklasse -->
     <div class="mb-3">
         <label for="weight_class_id" class="form-label">Gewichtsklasse</label>
         <select id="weight_class_id" name="weight_class_id" class="form-control" required>
@@ -47,6 +53,7 @@
         </select>
     </div>
 
+    <!-- Button für das Absenden des Formulars -->
     <button type="submit" class="btn btn-primary">
         {% if arena is defined %}
             Aktualisieren
@@ -56,3 +63,14 @@
     </button>
 </form>
 {% endblock %}
+
+{# 
+Beschreibung:
+- Das Template dient zum Erstellen oder Bearbeiten von Arenen.
+- Felder:
+  - "Name der Arena" (Textfeld, erforderlich)
+  - "Stadt" (Dropdown, Auswahl aus vorhandenen Städten, erforderlich)
+  - "Gewichtsklasse" (Dropdown, Auswahl aus vorhandenen Gewichtsklassen, erforderlich)
+- Der Submit-Button ändert seine Beschriftung je nach Aktion ("Hinzufügen" oder "Aktualisieren").
+- Die Daten werden entweder zum Erstellen einer neuen Arena (`/arenas/create`) oder zum Bearbeiten einer bestehenden Arena (`/arenas/edit/{{ arena.id }}`) gesendet.
+#}

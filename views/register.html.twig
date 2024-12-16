@@ -1,35 +1,47 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<h2 class="text-center">Registrieren</h2>
-<form action="/register" method="POST">
+<h2 class="text-center">Registrieren</h2> <!-- Überschrift für die Registrierungsseite -->
+
+<form action="/register" method="POST"> <!-- Formular für die Registrierung -->
     <div class="mb-3">
-        <label for="firstname" class="form-label">Vorname</label>
+        <label for="firstname" class="form-label">Vorname</label> <!-- Eingabefeld für den Vornamen -->
         <input type="text" class="form-control" id="firstname" name="firstname" required>
     </div>
     <div class="mb-3">
-        <label for="lastname" class="form-label">Nachname</label>
+        <label for="lastname" class="form-label">Nachname</label> <!-- Eingabefeld für den Nachnamen -->
         <input type="text" class="form-control" id="lastname" name="lastname" required>
     </div>
     <div class="mb-3">
-        <label for="email" class="form-label">E-Mail</label>
+        <label for="email" class="form-label">E-Mail</label> <!-- Eingabefeld für die E-Mail-Adresse -->
         <input type="email" class="form-control" id="email" name="email" required>
     </div>
     <div class="mb-3">
-        <label for="username" class="form-label">Benutzername</label>
+        <label for="username" class="form-label">Benutzername</label> <!-- Eingabefeld für den Benutzernamen -->
         <input type="text" class="form-control" id="username" name="username" required>
     </div>
     <div class="mb-3">
-        <label for="password" class="form-label">Passwort</label>
+        <label for="password" class="form-label">Passwort</label> <!-- Eingabefeld für das Passwort -->
         <input type="password" class="form-control" id="password" name="password" required>
     </div>
     <div class="mb-3">
-        <label for="confirm_password" class="form-label">Passwort bestätigen</label>
+        <label for="confirm_password" class="form-label">Passwort bestätigen</label> <!-- Eingabefeld für die Passwort-Bestätigung -->
         <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
     </div>
-    {% if error %}
-        <div class="text-danger mb-3">{{ error }}</div>
+
+    {% if error %} <!-- Falls ein Fehler auftritt -->
+        <div class="text-danger mb-3">{{ error }}</div> <!-- Fehlermeldung anzeigen -->
     {% endif %}
-    <button type="submit" class="btn btn-primary">Registrieren</button>
+
+    <button type="submit" class="btn btn-primary">Registrieren</button> <!-- Button zum Absenden des Formulars -->
 </form>
 {% endblock %}
+
+{#
+Beschreibung:
+- Dieses Template stellt die Benutzerregistrierungsseite dar.
+- Enthält Eingabefelder für Vorname, Nachname, E-Mail, Benutzername, Passwort und Passwort-Bestätigung.
+- Eine Fehlermeldung wird angezeigt, wenn Fehler wie fehlende Eingaben oder Passwort-Mismatches auftreten.
+- Das Formular verwendet die POST-Methode, um die Daten sicher an den Server zu senden.
+- Das Design basiert auf Bootstrap für ein sauberes und ansprechendes Layout.
+#}

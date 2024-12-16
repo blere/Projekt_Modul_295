@@ -4,6 +4,7 @@ namespace App\Model;
 
 use App\Gateway\UserGateway;
 
+// Die User-Klasse repräsentiert einen Benutzer im System.
 class User
 {
     private int $id; // ID des Benutzers
@@ -13,7 +14,7 @@ class User
     private string $username = ""; // Benutzername
     private string $password_hash = ""; // Passwort-Hash
 
-    // Getter und Setter für id
+    // Getter und Setter für die Benutzer-ID
     public function getId(): int
     {
         return $this->id;
@@ -24,7 +25,7 @@ class User
         $this->id = $id;
     }
 
-    // Getter und Setter für firstname
+    // Getter und Setter für den Vornamen
     public function getFirstname(): string
     {
         return $this->firstname;
@@ -35,7 +36,7 @@ class User
         $this->firstname = $firstname;
     }
 
-    // Getter und Setter für lastname
+    // Getter und Setter für den Nachnamen
     public function getLastname(): string
     {
         return $this->lastname;
@@ -46,7 +47,7 @@ class User
         $this->lastname = $lastname;
     }
 
-    // Getter und Setter für email
+    // Getter und Setter für die E-Mail-Adresse
     public function getEmail(): string
     {
         return $this->email;
@@ -57,7 +58,7 @@ class User
         $this->email = $email;
     }
 
-    // Getter und Setter für username
+    // Getter und Setter für den Benutzernamen
     public function getUsername(): string
     {
         return $this->username;
@@ -68,7 +69,7 @@ class User
         $this->username = $username;
     }
 
-    // Getter und Setter für password_hash
+    // Getter und Setter für den Passwort-Hash
     public function getPasswordHash(): string
     {
         return $this->password_hash;
@@ -81,9 +82,8 @@ class User
 
     /**
      * Findet einen Benutzer anhand des Benutzernamens.
-     *
-     * @param string $username
-     * @return self|null Gibt den Benutzer zurück, falls gefunden, ansonsten null.
+     * @param string $username Benutzername.
+     * @return self|null Gibt den Benutzer zurück, falls er gefunden wurde, sonst null.
      */
     public static function findByUsername(string $username): ?self
     {
@@ -93,9 +93,7 @@ class User
         return $data ? self::create($data) : null;
     }
 
-    /**
-     * Speichert den Benutzer (neu oder aktualisiert).
-     */
+    // Speichert den Benutzer (neu oder aktualisiert).
     public function save(): void
     {
         $gateway = new UserGateway();
@@ -119,7 +117,6 @@ class User
 
     /**
      * Erstellt eine Instanz von User aus den Datenbankergebnissen.
-     *
      * @param array $data Array mit Benutzerdaten aus der Datenbank.
      * @return self Gibt eine User-Instanz zurück.
      */
@@ -136,3 +133,21 @@ class User
         return $user;
     }
 }
+
+/**
+ * Beschreibung des Codes:
+ *
+ * - Die Klasse `User` repräsentiert Benutzerinformationen und Funktionen.
+ * - Eigenschaften:
+ *   - `id`: Eindeutige Benutzer-ID.
+ *   - `firstname`: Vorname des Benutzers.
+ *   - `lastname`: Nachname des Benutzers.
+ *   - `email`: E-Mail-Adresse des Benutzers.
+ *   - `username`: Benutzername des Benutzers.
+ *   - `password_hash`: Gehashter Passwortwert.
+ * - Methoden:
+ *   - `findByUsername`: Sucht einen Benutzer anhand des Benutzernamens.
+ *   - `save`: Speichert den Benutzer in der Datenbank (Insert oder Update).
+ *   - `create`: Erstellt eine `User`-Instanz aus Datenbankergebnissen.
+ * - Die Klasse interagiert über ein `UserGateway`-Objekt mit der Datenbank.
+ */

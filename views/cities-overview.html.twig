@@ -1,27 +1,48 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
+<!-- Überschrift der Seite -->
 <h2 class="text-center">Städte Übersicht</h2>
+
+<!-- Tabelle zur Darstellung der Städte -->
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Stadtname</th>
-            <th>Aktionen</th>
+            <th>ID</th> <!-- Spalte für die Stadt-ID -->
+            <th>Stadtname</th> <!-- Spalte für den Stadtnamen -->
+            <th>Aktionen</th> <!-- Spalte für die Aktionen -->
         </tr>
     </thead>
     <tbody>
+        <!-- Durchlaufen der Liste der Städte -->
         {% for city in cities %}
         <tr>
-            <td>{{ city.id }}</td>
-            <td>{{ city.name }}</td>
+            <td>{{ city.id }}</td> <!-- Anzeige der Stadt-ID -->
+            <td>{{ city.name }}</td> <!-- Anzeige des Stadtnamens -->
             <td>
+                <!-- Bearbeiten-Link für die Stadt -->
                 <a href="/cities/edit/{{ city.id }}" class="btn btn-sm btn-warning">Bearbeiten</a>
-                <a href="/cities/delete/{{ city.id }}" class="btn btn-sm btn-danger">Löschen</a>
+                <!-- Löschen-Link für die Stadt -->
+                <a href="/cities/delete/{{ city.id }}" class="btn btn-sm btn-danger" onclick="return confirm('Möchten Sie diese Stadt wirklich löschen?')">Löschen</a>
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+
+<!-- Button zum Hinzufügen einer neuen Stadt -->
 <a href="/cities/create" class="btn btn-success">Neue Stadt hinzufügen</a>
+
 {% endblock %}
+
+{# 
+Beschreibung:
+- Dieses Template zeigt eine Übersicht aller Städte in einer Tabelle.
+- Die Tabelle enthält drei Spalten:
+  - `ID`: Die eindeutige ID der Stadt.
+  - `Stadtname`: Der Name der Stadt.
+  - `Aktionen`: Links zum Bearbeiten oder Löschen der Stadt.
+- Jede Stadt in der Liste `cities` wird als Tabellenzeile dargestellt.
+- Der Button "Neue Stadt hinzufügen" leitet zum Formular zum Erstellen einer neuen Stadt weiter.
+- Sicherheitsabfrage beim Löschen, um unbeabsichtigtes Entfernen zu verhindern.
+#}

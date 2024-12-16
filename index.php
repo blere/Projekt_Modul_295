@@ -69,6 +69,10 @@ foreach ($routes[$method] as $route => $action) {
     }
 }
 
-// Gibt eine 404-Fehlermeldung aus, wenn keine passende Route gefunden wird
-http_response_code(404);
-echo "Seite nicht gefunden!";
+/*
+Beschreibung:
+- Dieses Skript implementiert ein einfaches Routing-System, das HTTP-GET- und POST-Anfragen verarbeitet.
+- Basierend auf der aktuellen URI und Methode wird die entsprechende Controller-Methode aufgerufen.
+- Unterstützt dynamische Platzhalter in den Routen (z. B. {id} für Ressourcen-IDs).
+- Ermöglicht das Laden von Seiten wie Kämpferübersicht, Arenaübersicht, Kämpfen und Benutzerverwaltung.
+*/

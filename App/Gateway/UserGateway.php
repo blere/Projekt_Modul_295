@@ -4,13 +4,13 @@ namespace App\Gateway;
 
 class UserGateway extends BasicTableGateway
 {
-    protected string $table = "users"; // Name der Tabelle "users"
+    // Name der Tabelle "users"
+    protected string $table = "users";
 
     /**
      * Findet einen Benutzer anhand der ID.
-     *
-     * @param int $id
-     * @return array|null
+     * @param int $id Die ID des Benutzers.
+     * @return array|null Gibt die Benutzerdaten zurück oder null, wenn kein Benutzer gefunden wurde.
      */
     public function find(int $id): ?array
     {
@@ -20,16 +20,15 @@ class UserGateway extends BasicTableGateway
         $statement->bindParam(':id', $id, \PDO::PARAM_INT);
         $statement->execute();
 
-        // Gibt das Ergebnis als Array zurück oder null, wenn kein Benutzer gefunden wird
+        // Gibt das Ergebnis als Array zurück oder null, wenn kein Benutzer gefunden wurde
         $result = $statement->fetch(\PDO::FETCH_ASSOC);
         return $result ?: null;
     }
 
     /**
      * Findet einen Benutzer anhand des Benutzernamens.
-     *
-     * @param string $username
-     * @return array|null
+     * @param string $username Der Benutzername.
+     * @return array|null Gibt die Benutzerdaten zurück oder null, wenn kein Benutzer gefunden wurde.
      */
     public function findByUsername(string $username): ?array
     {
@@ -39,16 +38,15 @@ class UserGateway extends BasicTableGateway
         $statement->bindParam(':username', $username, \PDO::PARAM_STR);
         $statement->execute();
 
-        // Gibt das Ergebnis als Array zurück oder null, wenn kein Benutzer gefunden wird
+        // Gibt das Ergebnis als Array zurück oder null, wenn kein Benutzer gefunden wurde
         $result = $statement->fetch(\PDO::FETCH_ASSOC);
         return $result ?: null;
     }
 
     /**
      * Fügt einen neuen Benutzer hinzu.
-     *
-     * @param array $data
-     * @return int
+     * @param array $data Die Benutzerdaten.
+     * @return int Gibt die ID des neu erstellten Benutzers zurück.
      */
     public function insert(array $data): int
     {
@@ -69,9 +67,8 @@ class UserGateway extends BasicTableGateway
 
     /**
      * Aktualisiert einen bestehenden Benutzer.
-     *
-     * @param int $id
-     * @param array $data
+     * @param int $id Die ID des Benutzers.
+     * @param array $data Die neuen Benutzerdaten.
      * @return void
      */
     public function update(int $id, array $data): void
@@ -93,8 +90,7 @@ class UserGateway extends BasicTableGateway
 
     /**
      * Löscht einen Benutzer anhand der ID.
-     *
-     * @param int $id
+     * @param int $id Die ID des Benutzers.
      * @return void
      */
     public function delete(int $id): void
@@ -106,3 +102,16 @@ class UserGateway extends BasicTableGateway
         $statement->execute();
     }
 }
+
+/**
+ * Beschreibung des Codes:
+ *
+ * - `UserGateway` verwaltet Datenbankoperationen für die Tabelle `users`.
+ * - Funktionen:
+ *   - `find`: Sucht einen Benutzer anhand der ID.
+ *   - `findByUsername`: Sucht einen Benutzer anhand des Benutzernamens.
+ *   - `insert`: Fügt einen neuen Benutzer in die Datenbank ein.
+ *   - `update`: Aktualisiert die Daten eines bestehenden Benutzers.
+ *   - `delete`: Löscht einen Benutzer anhand der ID.
+ * - Diese Klasse implementiert die grundlegenden CRUD-Operationen (Create, Read, Update, Delete) für Benutzer.
+ */

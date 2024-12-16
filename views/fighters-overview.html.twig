@@ -2,7 +2,10 @@
 
 {% block content %}
 
+<!-- Überschrift für die Kämpferübersicht -->
 <h2 class="text-center">Kämpfer Übersicht</h2>
+
+<!-- Tabelle für die Kämpferdaten -->
 <table class="table table-striped">
     <thead>
         <tr>
@@ -18,6 +21,7 @@
         </tr>
     </thead>
     <tbody>
+        <!-- Schleife zur Darstellung der Kämpferdaten -->
         {% for fighter in fighters %}
         <tr>
             <td>{{ fighter.full_name }}</td>
@@ -29,6 +33,7 @@
             <td>{{ fighter.city_name }}</td>
             <td>{{ fighter.experience_level }}</td>
             <td>
+                <!-- Aktionen: Bearbeiten und Löschen -->
                 <a href="/fighters/edit/{{ fighter.id }}" class="btn btn-sm btn-primary">Bearbeiten</a>
                 <a href="/fighters/delete/{{ fighter.id }}" class="btn btn-sm btn-danger" onclick="return confirm('Möchten Sie diesen Kämpfer wirklich löschen?')">Löschen</a>
             </td>
@@ -37,6 +42,17 @@
     </tbody>
 </table>
 
+<!-- Button zum Hinzufügen eines neuen Kämpfers -->
 <a href="/fighters/create" class="btn btn-success">Neuen Kämpfer hinzufügen</a>
 
 {% endblock %}
+
+{#
+Beschreibung:
+- Dieses Template zeigt eine Übersicht aller Kämpfer in einer Tabelle an.
+- Die Tabelle enthält folgende Spalten:
+  - Name, Kämpfername, Geburtsdatum, Größe, Gewicht, Gewichtsklasse, Stadt und Erfahrungslevel.
+  - Eine Spalte für Aktionen (Bearbeiten und Löschen).
+- Jeder Kämpfer wird in einer Zeile dargestellt.
+- Ein Button unter der Tabelle erlaubt das Hinzufügen eines neuen Kämpfers.
+#}

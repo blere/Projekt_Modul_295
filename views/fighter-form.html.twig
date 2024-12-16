@@ -1,6 +1,7 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
+<!-- Überschrift, die den Modus anzeigt: Bearbeiten oder Hinzufügen eines Kämpfers -->
 <h2 class="text-center">
     {% if fighter is defined %}
         Kämpfer bearbeiten
@@ -9,27 +10,40 @@
     {% endif %}
 </h2>
 
+<!-- Formular für Kämpferdaten -->
 <form action="{% if fighter is defined %}/fighters/edit/{{ fighter.id }}{% else %}/fighters/create{% endif %}" method="POST">
+
+    <!-- Feld für den vollständigen Namen -->
     <div class="mb-3">
         <label for="full_name" class="form-label">Vollständiger Name</label>
         <input type="text" class="form-control" id="full_name" name="full_name" value="{% if fighter is defined %}{{ fighter.full_name }}{% endif %}" required>
     </div>
+
+    <!-- Feld für den Kämpfernamen -->
     <div class="mb-3">
         <label for="fighter_name" class="form-label">Kämpfername</label>
         <input type="text" class="form-control" id="fighter_name" name="fighter_name" value="{% if fighter is defined %}{{ fighter.fighter_name }}{% endif %}" required>
     </div>
+
+    <!-- Feld für das Geburtsdatum -->
     <div class="mb-3">
         <label for="birthdate" class="form-label">Geburtsdatum</label>
         <input type="date" class="form-control" id="birthdate" name="birthdate" value="{% if fighter is defined %}{{ fighter.birthdate }}{% endif %}" required>
     </div>
+
+    <!-- Feld für die Größe -->
     <div class="mb-3">
         <label for="height" class="form-label">Größe (cm)</label>
         <input type="number" class="form-control" id="height" name="height" value="{% if fighter is defined %}{{ fighter.height }}{% endif %}" required>
     </div>
+
+    <!-- Feld für das Gewicht -->
     <div class="mb-3">
         <label for="weight" class="form-label">Gewicht (kg)</label>
         <input type="number" class="form-control" id="weight" name="weight" value="{% if fighter is defined %}{{ fighter.weight }}{% endif %}" required>
     </div>
+
+    <!-- Auswahlfeld für die Gewichtsklasse -->
     <div class="mb-3">
         <label for="weight_class_id" class="form-label">Gewichtsklasse</label>
         <select id="weight_class_id" name="weight_class_id" class="form-control" required>
@@ -40,6 +54,8 @@
             {% endfor %}
         </select>
     </div>
+
+    <!-- Auswahlfeld für die Stadt -->
     <div class="mb-3">
         <label for="city_id" class="form-label">Stadt</label>
         <select id="city_id" name="city_id" class="form-control" required>
@@ -50,6 +66,8 @@
             {% endfor %}
         </select>
     </div>
+
+    <!-- Auswahlfeld für das Erfahrungslevel -->
     <div class="mb-3">
         <label for="experience_level" class="form-label">Erfahrungslevel</label>
         <select id="experience_level" name="experience_level" class="form-control" required>
@@ -61,8 +79,19 @@
             </option>
         </select>
     </div>
+
+    <!-- Button zum Speichern oder Hinzufügen -->
     <button type="submit" class="btn btn-primary">
         {% if fighter is defined %}Änderungen speichern{% else %}Hinzufügen{% endif %}
     </button>
 </form>
 {% endblock %}
+
+{#
+Beschreibung:
+- Dieses Template wird für die Erstellung oder Bearbeitung eines Kämpfers verwendet.
+- Es enthält:
+  - Textfelder für den vollständigen Namen, Kämpfernamen, Geburtsdatum, Größe und Gewicht.
+  - Dropdowns für Gewichtsklasse, Stadt und Erfahrungslevel.
+  - Einen dynamischen Button, der je nach Zustand (Kämpfer definiert oder nicht) "Änderungen speichern" oder "Hinzufügen" anzeigt.
+#}

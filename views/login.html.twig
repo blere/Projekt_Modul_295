@@ -1,19 +1,28 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<h2 class="text-center">Login</h2>
-<form action="/login" method="POST">
+<h2 class="text-center">Login</h2> <!-- Überschrift für die Login-Seite -->
+<form action="/login" method="POST"> <!-- Formular zum Senden der Login-Daten -->
     <div class="mb-3">
-        <label for="username" class="form-label">Benutzername</label>
+        <label for="username" class="form-label">Benutzername</label> <!-- Eingabefeld für den Benutzernamen -->
         <input type="text" class="form-control" id="username" name="username" required>
     </div>
     <div class="mb-3">
-        <label for="password" class="form-label">Passwort</label>
+        <label for="password" class="form-label">Passwort</label> <!-- Eingabefeld für das Passwort -->
         <input type="password" class="form-control" id="password" name="password" required>
     </div>
-    {% if error %}
-        <div class="text-danger mb-3">{{ error }}</div>
+    {% if error %} <!-- Überprüfung, ob ein Fehler vorliegt -->
+        <div class="text-danger mb-3">{{ error }}</div> <!-- Fehlermeldung anzeigen -->
     {% endif %}
-    <button type="submit" class="btn btn-primary">Login</button>
+    <button type="submit" class="btn btn-primary">Login</button> <!-- Button zum Absenden des Formulars -->
 </form>
 {% endblock %}
+
+{#
+Beschreibung:
+- Diese Datei stellt das Template für die Login-Seite bereit.
+- Es enthält ein Formular mit Feldern für den Benutzernamen und das Passwort.
+- Wenn ein Fehler (z. B. falsche Anmeldedaten) vorliegt, wird dieser oberhalb des Buttons angezeigt.
+- Das Formular verwendet POST, um die Daten sicher an den Server zu senden.
+- Das Design basiert auf Bootstrap für eine benutzerfreundliche Darstellung.
+#}

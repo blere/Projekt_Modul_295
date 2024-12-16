@@ -1,12 +1,39 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
+<!-- Überschrift: Zeigt entweder "Stadt bearbeiten" oder "Neue Stadt hinzufügen" basierend auf dem Kontext -->
 <h2 class="text-center">{{ city ? "Stadt bearbeiten" : "Neue Stadt hinzufügen" }}</h2>
+
+<!-- Formular für das Erstellen oder Bearbeiten einer Stadt -->
 <form action="{{ city ? '/cities/edit/' ~ city.id : '/cities/create' }}" method="POST">
     <div class="mb-3">
+        <!-- Eingabefeld für den Stadtnamen -->
         <label for="name" class="form-label">Stadtname</label>
-        <input type="text" class="form-control" id="name" name="name" value="{{ city.name ?? '' }}" required>
+        <input 
+            type="text" 
+            class="form-control" 
+            id="name" 
+            name="name" 
+            value="{{ city.name ?? '' }}" 
+            required>
     </div>
+    <!-- Button zum Speichern oder Hinzufügen der Stadt -->
     <button type="submit" class="btn btn-primary">{{ city ? "Speichern" : "Hinzufügen" }}</button>
 </form>
+
 {% endblock %}
+
+{# 
+Beschreibung:
+- Dieses Template stellt ein Formular bereit, um eine Stadt zu erstellen oder zu bearbeiten.
+- Überschrift:
+  - Wenn eine `city`-Variable definiert ist, wird "Stadt bearbeiten" angezeigt.
+  - Andernfalls wird "Neue Stadt hinzufügen" angezeigt.
+- Formularaktion:
+  - Für das Bearbeiten: `/cities/edit/{{ city.id }}`.
+  - Für das Erstellen: `/cities/create`.
+- Eingabefeld:
+  - Zeigt den Namen der Stadt, wenn `city.name` definiert ist.
+  - Das Feld ist erforderlich (`required`).
+- Der Button zeigt "Speichern" oder "Hinzufügen" basierend auf dem Kontext.
+#}

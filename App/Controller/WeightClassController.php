@@ -108,3 +108,32 @@ class WeightClassController extends DefaultController
         $this->redirect("/weight-classes"); // Weiterleitung zur Gewichtsklassenübersicht
     }
 }
+
+/**
+ * Beschreibung des Codes:
+ *
+ * - `index`:
+ *   - Holt alle Gewichtsklassen aus der Datenbank.
+ *   - Zeigt die Gewichtsklassen in einer Übersicht an.
+ *
+ * - `create`:
+ *   - Zeigt das Formular zum Hinzufügen einer neuen Gewichtsklasse.
+ *
+ * - `store`:
+ *   - Validiert die Eingabedaten.
+ *   - Speichert eine neue Gewichtsklasse in der Datenbank.
+ *   - Zeigt eine Fehlermeldung bei Fehlern während der Validierung oder Speicherung.
+ *
+ * - `edit`:
+ *   - Holt eine Gewichtsklasse anhand ihrer ID aus der Datenbank.
+ *   - Zeigt ein Formular zur Bearbeitung der Gewichtsklasse an.
+ *
+ * - `update`:
+ *   - Validiert die Eingabedaten.
+ *   - Aktualisiert eine bestehende Gewichtsklasse in der Datenbank.
+ *   - Zeigt eine Fehlermeldung bei Fehlern während der Aktualisierung.
+ *
+ * - `delete`:
+ *   - Löscht eine Gewichtsklasse anhand ihrer ID.
+ *   - Zeigt eine Fehlermeldung bei Fehlern während des Löschvorgangs.
+ */

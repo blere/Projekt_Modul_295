@@ -6,6 +6,11 @@ class ArenaGateway extends BasicTableGateway
 {
     protected string $table = "arenas"; // Tabellenname
 
+    /**
+     * Ruft alle Arenen mit ihren zugehörigen Städten und Gewichtsklassen ab.
+     *
+     * @return array Eine Liste aller Arenen mit zusätzlichen Informationen
+     */
     public function all(): array
     {
         $sql = "
@@ -26,6 +31,12 @@ class ArenaGateway extends BasicTableGateway
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Findet eine Arena anhand ihrer ID.
+     *
+     * @param int $id Die ID der Arena
+     * @return array|null Die Arena-Daten oder null, falls nicht gefunden
+     */
     public function find(int $id): ?array
     {
         $sql = "
@@ -58,3 +69,19 @@ class ArenaGateway extends BasicTableGateway
         $statement->execute();
     }
 }
+
+/**
+ * Beschreibung des Codes:
+ *
+ * - `all`:
+ *   - Holt alle Arenen aus der Datenbank.
+ *   - Verknüpft die Arenen mit den zugehörigen Städten und Gewichtsklassen.
+ *   - Gibt die vollständige Liste der Arenen mit zusätzlichen Informationen (Stadtname, Gewichtsklassenname) zurück.
+ *
+ * - `find`:
+ *   - Findet eine spezifische Arena anhand ihrer ID.
+ *   - Gibt die Arena-Daten zurück, wenn gefunden, oder null, falls nicht gefunden.
+ *
+ * - `delete`:
+ *   - Löscht eine Arena aus der Datenbank anhand ihrer ID.
+ */

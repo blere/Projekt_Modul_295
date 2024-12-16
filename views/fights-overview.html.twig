@@ -2,38 +2,54 @@
 
 {% block content %}
 
+<!-- Überschrift für die Kämpfe-Übersicht -->
 <h2 class="text-center">Kämpfe Übersicht</h2> 
 
-<table class="table table-striped"> {# Tabelle mit einer gestreiften Darstellung für bessere Lesbarkeit #}
+<!-- Tabelle zur Darstellung der Kämpfe -->
+<table class="table table-striped"> <!-- Tabelle mit gestreifter Darstellung für bessere Lesbarkeit -->
     <thead>
         <tr>
-            <th>Kämpfer 1</th> {# Spaltenüberschrift für den ersten Kämpfer #}
-            <th>Kämpfer 2</th> {# Spaltenüberschrift für den zweiten Kämpfer #}
-            <th>Arena</th> {# Spaltenüberschrift für die Arena #}
-            <th>Datum</th> {# Spaltenüberschrift für das Datum des Kampfes #}
-            <th>Kontaktart</th> {# Spaltenüberschrift für die Kontaktart (Leichtkontakt/Vollkontakt) #}
-            <th>Ergebnis</th> {# Spaltenüberschrift für das Ergebnis des Kampfes #}
-            <th>Aktionen</th> {# Spaltenüberschrift für Aktionen wie Bearbeiten oder Löschen #}
+            <th>Kämpfer 1</th> <!-- Spaltenüberschrift für den ersten Kämpfer -->
+            <th>Kämpfer 2</th> <!-- Spaltenüberschrift für den zweiten Kämpfer -->
+            <th>Arena</th> <!-- Spaltenüberschrift für die Arena -->
+            <th>Datum</th> <!-- Spaltenüberschrift für das Datum des Kampfes -->
+            <th>Kontaktart</th> <!-- Spaltenüberschrift für die Kontaktart (Leichtkontakt/Vollkontakt) -->
+            <th>Ergebnis</th> <!-- Spaltenüberschrift für das Ergebnis des Kampfes -->
+            <th>Aktionen</th> <!-- Spaltenüberschrift für Aktionen wie Bearbeiten oder Löschen -->
         </tr>
     </thead>
     <tbody>
-        {% for fight in fights %} {# Schleife, die alle Kämpfe durchläuft und ihre Daten anzeigt #}
+        <!-- Schleife zum Anzeigen der Kämpfe -->
+        {% for fight in fights %}
         <tr>
-            <td>{{ fight.fighter1_name }}</td> {# Name des ersten Kämpfers #}
-            <td>{{ fight.fighter2_name }}</td> {# Name des zweiten Kämpfers #}
-            <td>{{ fight.arena_name }}</td> {# Name der Arena, in der der Kampf stattfindet #}
-            <td>{{ fight.date }}</td> {# Datum des Kampfes #}
-            <td>{{ fight.contact_type }}</td> {# Kontaktart des Kampfes (z. B. Leichtkontakt) #}
-            <td>{{ fight.result }}</td> {# Ergebnis des Kampfes #}
+            <td>{{ fight.fighter1_name }}</td> <!-- Name des ersten Kämpfers -->
+            <td>{{ fight.fighter2_name }}</td> <!-- Name des zweiten Kämpfers -->
+            <td>{{ fight.arena_name }}</td> <!-- Name der Arena -->
+            <td>{{ fight.date }}</td> <!-- Datum des Kampfes -->
+            <td>{{ fight.contact_type }}</td> <!-- Kontaktart des Kampfes -->
+            <td>{{ fight.result }}</td> <!-- Ergebnis des Kampfes -->
             <td>
-                <a href="/fights/edit/{{ fight.id }}" class="btn btn-sm btn-primary">Bearbeiten</a> {# Link zum Bearbeiten des Kampfes #}
-                <a href="/fights/delete/{{ fight.id }}" class="btn btn-sm btn-danger" onclick="return confirm('Möchten Sie diesen Kampf wirklich löschen?')">Löschen</a> {# Link zum Löschen des Kampfes mit einer Bestätigungsabfrage #}
+                <!-- Button zum Bearbeiten des Kampfes -->
+                <a href="/fights/edit/{{ fight.id }}" class="btn btn-sm btn-primary">Bearbeiten</a>
+                <!-- Button zum Löschen des Kampfes mit einer Bestätigungsabfrage -->
+                <a href="/fights/delete/{{ fight.id }}" class="btn btn-sm btn-danger" onclick="return confirm('Möchten Sie diesen Kampf wirklich löschen?')">Löschen</a>
             </td>
         </tr>
-        {% endfor %} {# Ende der Schleife für die Kämpfe #}
+        {% endfor %} <!-- Ende der Schleife -->
     </tbody>
 </table>
 
-<a href="/fights/create" class="btn btn-success">Neuen Kampf hinzufügen</a> {# Button, um einen neuen Kampf hinzuzufügen #}
+<!-- Button zum Hinzufügen eines neuen Kampfes -->
+<a href="/fights/create" class="btn btn-success">Neuen Kampf hinzufügen</a>
 
 {% endblock %}
+
+{#
+Beschreibung:
+- Dieses Template zeigt eine Übersicht aller Kämpfe in einer Tabelle an.
+- Die Tabelle enthält folgende Spalten:
+  - Kämpfer 1, Kämpfer 2, Arena, Datum, Kontaktart und Ergebnis.
+  - Eine Spalte für Aktionen (Bearbeiten und Löschen).
+- Jeder Kampf wird in einer Zeile dargestellt.
+- Unter der Tabelle gibt es einen Button, um einen neuen Kampf hinzuzufügen.
+#}

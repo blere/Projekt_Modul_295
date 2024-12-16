@@ -4,15 +4,16 @@ namespace App\Gateway;
 
 class FightGateway extends BasicTableGateway
 {
-    protected string $table = "fights"; // Name der Tabelle
+    // Name der Tabelle
+    protected string $table = "fights";
 
     /**
-     * Holt alle Kämpfe mit verbundenen Daten (Kämpfer, Arena).
-     *
-     * @return array
+     * Holt alle Kämpfe mit verbundenen Daten (Kämpfer und Arena).
+     * @return array Gibt eine Liste aller Kämpfe mit erweiterten Informationen zurück.
      */
     public function all(): array
     {
+        // SQL-Abfrage, um alle Kämpfe und deren Beziehungen zu Kämpfern und Arenen abzurufen
         $sql = "
             SELECT 
                 f.id, 
@@ -34,17 +35,18 @@ class FightGateway extends BasicTableGateway
         $statement = $this->connection->prepare($sql);
         $statement->execute();
 
+        // Gibt alle Kämpfe als Array zurück
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     /**
-     * Findet einen Kampf anhand der ID.
-     *
-     * @param int $id
-     * @return array|null
+     * Findet einen Kampf anhand seiner ID.
+     * @param int $id Die ID des Kampfes.
+     * @return array|null Gibt die Kampfdaten oder null zurück, wenn der Kampf nicht gefunden wurde.
      */
     public function find(int $id): ?array
     {
+        // SQL-Abfrage, um einen Kampf anhand seiner ID abzurufen
         $sql = "
             SELECT 
                 f.id, 
@@ -65,21 +67,21 @@ class FightGateway extends BasicTableGateway
         ";
 
         $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':id', $id, \PDO::PARAM_INT);
+        $statement->bindParam(':id', $id, \PDO::PARAM_INT); // Bindet die ID an die Abfrage
         $statement->execute();
 
         $result = $statement->fetch(\PDO::FETCH_ASSOC);
-        return $result ?: null;
+        return $result ?: null; // Gibt null zurück, wenn kein Eintrag gefunden wurde
     }
 
     /**
      * Fügt einen neuen Kampf in die Datenbank ein.
-     *
-     * @param array $data
-     * @return int Die ID des eingefügten Kampfes
+     * @param array $data Die Daten des neuen Kampfes.
+     * @return int Gibt die ID des neu eingefügten Kampfes zurück.
      */
     public function insert(array $data): int
     {
+        // SQL-Abfrage, um einen neuen Kampf einzufügen
         $sql = "
             INSERT INTO fights (fighter1_id, fighter2_id, arena_id, date, contact_type, result)
             VALUES (:fighter1_id, :fighter2_id, :arena_id, :date, :contact_type, :result)
@@ -88,17 +90,18 @@ class FightGateway extends BasicTableGateway
         $statement = $this->connection->prepare($sql);
         $statement->execute($data);
 
+        // Gibt die ID des eingefügten Eintrags zurück
         return (int)$this->connection->lastInsertId();
     }
 
     /**
      * Aktualisiert einen bestehenden Kampf.
-     *
-     * @param int $id
-     * @param array $data
+     * @param int $id Die ID des Kampfes.
+     * @param array $data Die neuen Daten des Kampfes.
      */
     public function update(int $id, array $data): void
     {
+        // SQL-Abfrage, um einen bestehenden Kampf zu aktualisieren
         $sql = "
             UPDATE fights
             SET fighter1_id = :fighter1_id,
@@ -111,20 +114,33 @@ class FightGateway extends BasicTableGateway
         ";
 
         $statement = $this->connection->prepare($sql);
-        $data['id'] = $id;
-        $statement->execute($data);
+        $data['id'] = $id; // Fügt die ID zu den Daten hinzu
+        $statement->execute($data); // Führt die Abfrage aus
     }
 
     /**
-     * Löscht einen Kampf anhand der ID.
-     *
-     * @param int $id
+     * Löscht einen Kampf aus der Datenbank.
+     * @param int $id Die ID des Kampfes.
      */
     public function delete(int $id): void
     {
+        // SQL-Abfrage, um einen Kampf zu löschen
         $sql = "DELETE FROM fights WHERE id = :id";
         $statement = $this->connection->prepare($sql);
-        $statement->bindParam(':id', $id, \PDO::PARAM_INT);
-        $statement->execute();
+        $statement->bindParam(':id', $id, \PDO::PARAM_INT); // Bindet die ID an die Abfrage
+        $statement->execute(); // Führt die Abfrage aus
     }
 }
+
+/**
+ * Beschreibung des Codes:
+ *
+ * - `FightGateway` verwaltet Datenbankoperationen für die Tabelle `fights`.
+ * - Funktionen:
+ *   - `all`: Holt alle Kämpfe mit zugehörigen Kämpfern und Arenen.
+ *   - `find`: Findet einen spezifischen Kampf anhand seiner ID.
+ *   - `insert`: Fügt einen neuen Kampf in die Tabelle ein.
+ *   - `update`: Aktualisiert die Daten eines bestehenden Kampfes.
+ *   - `delete`: Löscht einen Kampf anhand seiner ID.
+ * - Diese Klasse implementiert die CRUD-Operationen (Create, Read, Update, Delete) für Kämpfe.
+ */

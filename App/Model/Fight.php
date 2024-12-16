@@ -6,16 +6,16 @@ use App\Gateway\FightGateway;
 
 class Fight
 {
-    private int $id;
-    private int $fighter1_id;
-    private int $fighter2_id;
-    private int $arena_id;
-    private string $date;
-    private string $contact_type;
-    private ?string $result;
-    private ?string $fighter1_name; // Name des Kämpfers 1
-    private ?string $fighter2_name; // Name des Kämpfers 2
-    private ?string $arena_name; // Name der Arena
+    private int $id; // ID des Kampfes
+    private int $fighter1_id; // ID von Kämpfer 1
+    private int $fighter2_id; // ID von Kämpfer 2
+    private int $arena_id; // ID der Arena
+    private string $date; // Datum des Kampfes
+    private string $contact_type; // Kontaktart (z.B. Leichtkontakt, Vollkontakt)
+    private ?string $result; // Ergebnis des Kampfes (optional)
+    private ?string $fighter1_name; // Name des Kämpfers 1 (optional)
+    private ?string $fighter2_name; // Name des Kämpfers 2 (optional)
+    private ?string $arena_name; // Name der Arena (optional)
 
     // Getter und Setter für ID
     public function getid(): int { return $this->id; }
@@ -59,61 +59,65 @@ class Fight
 
     /**
      * Holt alle Kämpfe aus der Datenbank.
+     * @return array Eine Liste aller Kämpfe
      */
     public static function all(): array
     {
-        $gateway = new FightGateway();
+        $gateway = new FightGateway(); // Gateway-Instanz erstellen
         $fights = [];
         foreach ($gateway->all() as $fightData) {
-            $fights[] = self::create($fightData);
+            $fights[] = self::create($fightData); // Fight-Objekte erstellen
         }
         return $fights;
     }
 
     /**
      * Findet einen Kampf anhand der ID.
+     * @param int $id Die ID des Kampfes
+     * @return self|null Das Fight-Objekt oder null, falls nicht gefunden
      */
     public static function find(int $id): ?self
     {
-        $gateway = new FightGateway();
+        $gateway = new FightGateway(); // Gateway-Instanz erstellen
         $fightData = $gateway->find($id);
         if ($fightData) {
-            return self::create($fightData);
+            return self::create($fightData); // Fight-Objekt erstellen
         }
         return null;
     }
 
-    /**
-     * Speichert einen neuen oder aktualisierten Kampf.
-     */
+    // Speichert einen neuen oder aktualisierten Kampf.
     public function save(): void
     {
-        $gateway = new FightGateway();
+        $gateway = new FightGateway(); // Gateway-Instanz erstellen
         if (isset($this->id)) {
-            $gateway->update($this->id, $this->toArray());
+            $gateway->update($this->id, $this->toArray()); // Update, falls ID existiert
         } else {
-            $this->id = $gateway->insert($this->toArray());
+            $this->id = $gateway->insert($this->toArray()); // Insert, falls keine ID existiert
         }
     }
 
     /**
      * Löscht einen Kampf anhand der ID.
+     * @throws \Exception Wenn die ID nicht gesetzt ist
      */
     public function delete(): void
     {
         if (!isset($this->id)) {
             throw new \Exception("Kampf ID nicht gesetzt.");
         }
-        $gateway = new FightGateway();
-        $gateway->delete($this->id);
+        $gateway = new FightGateway(); // Gateway-Instanz erstellen
+        $gateway->delete($this->id); // Kampf löschen
     }
 
     /**
      * Erstellt ein Fight-Objekt aus einem Array.
+     * @param array $data Die Daten des Kampfes
+     * @return self Ein neues Fight-Objekt
      */
     private static function create(array $data): self
     {
-        $fight = new self();
+        $fight = new self(); // Neue Instanz erstellen
         $fight->setid((int)$data['id']);
         $fight->setfighter1_id((int)$data['fighter1_id']);
         $fight->setfighter2_id((int)$data['fighter2_id']);
@@ -129,6 +133,7 @@ class Fight
 
     /**
      * Gibt die Attribute des Kampfes als Array zurück.
+     * @return array Ein Array mit den Attributen des Kampfes
      */
     private function toArray(): array
     {
@@ -142,3 +147,22 @@ class Fight
         ];
     }
 }
+
+/**
+ * Beschreibung des Codes:
+ *
+ * - Diese Klasse repräsentiert einen Kampf in der Anwendung.
+ * - Eigenschaften:
+ *   - `id`: Die eindeutige ID des Kampfes.
+ *   - `fighter1_id`, `fighter2_id`: IDs der Kämpfer.
+ *   - `arena_id`: Die ID der Arena.
+ *   - `date`: Datum des Kampfes.
+ *   - `contact_type`: Kontaktart (Leichtkontakt/Vollkontakt).
+ *   - `result`: Ergebnis des Kampfes.
+ * - CRUD-Methoden:
+ *   - `all`: Holt alle Kämpfe.
+ *   - `find`: Findet einen Kampf anhand der ID.
+ *   - `save`: Speichert einen Kampf (neu oder aktualisiert).
+ *   - `delete`: Löscht einen Kampf anhand der ID.
+ * - Unterstützt das Erstellen von Kampf-Objekten aus Datenbankdaten.
+ */

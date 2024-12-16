@@ -1,8 +1,10 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-
+<!-- Überschrift für die Arenen-Übersichtsseite -->
 <h2 class="text-center">Arenen Übersicht</h2>
+
+<!-- Tabelle zur Anzeige der Arenen -->
 <table class="table table-striped">
     <thead>
         <tr>
@@ -15,11 +17,14 @@
     <tbody>
         {% for arena in arenas %}
         <tr>
-            <td>{{ arena.name }}</td>
-            <td>{{ arena.city_name }}</td>
-            <td>{{ arena.weight_class_name }}</td>
+            <td>{{ arena.name }}</td> <!-- Name der Arena -->
+            <td>{{ arena.city_name }}</td> <!-- Stadt der Arena -->
+            <td>{{ arena.weight_class_name }}</td> <!-- Gewichtsklasse der Arena -->
             <td>
+                <!-- Link zum Bearbeiten der Arena -->
                 <a href="/arenas/edit/{{ arena.id }}" class="btn btn-sm btn-primary">Bearbeiten</a>
+                
+                <!-- Link zum Löschen der Arena mit Bestätigungsdialog -->
                 <a href="/arenas/delete/{{ arena.id }}" class="btn btn-sm btn-danger" onclick="return confirm('Möchten Sie diese Arena wirklich löschen?')">Löschen</a>
             </td>
         </tr>
@@ -27,6 +32,21 @@
     </tbody>
 </table>
 
+<!-- Button zum Erstellen einer neuen Arena -->
 <a href="/arenas/create" class="btn btn-success">Neue Arena erstellen</a>
 
 {% endblock %}
+
+{# 
+Beschreibung:
+- Dieses Template zeigt eine Übersicht der Arenen in einer Tabelle.
+- Spalten:
+  - Name der Arena
+  - Stadt, in der die Arena liegt
+  - Gewichtsklasse der Arena
+  - Aktionen (Bearbeiten, Löschen)
+- Jeder Arena-Eintrag hat Links für Bearbeiten und Löschen:
+  - Bearbeiten führt zu `/arenas/edit/{{ arena.id }}`.
+  - Löschen zeigt eine Bestätigungsnachricht und führt zu `/arenas/delete/{{ arena.id }}`.
+- Ein Button am Ende ermöglicht das Erstellen einer neuen Arena (`/arenas/create`).
+#}

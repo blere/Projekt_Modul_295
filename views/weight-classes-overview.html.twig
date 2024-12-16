@@ -1,36 +1,44 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
-<h2 class="text-center">Gewichtsklassen Übersicht</h2>
+<h2 class="text-center">Gewichtsklassen Übersicht</h2> <!-- Überschrift der Seite -->
 
-<table class="table table-striped">
+<table class="table table-striped"> <!-- Tabelle zur Darstellung der Gewichtsklassen -->
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Name der Gewichtsklasse</th>
-            <th>Aktionen</th>
+            <th>ID</th> <!-- Spaltenüberschrift für die ID -->
+            <th>Name der Gewichtsklasse</th> <!-- Spaltenüberschrift für den Namen -->
+            <th>Aktionen</th> <!-- Spaltenüberschrift für die verfügbaren Aktionen -->
         </tr>
     </thead>
     <tbody>
-        {% for weight_class in weight_classes %}
+        {% for weight_class in weight_classes %} <!-- Schleife durch alle Gewichtsklassen -->
         <tr>
-            <td>{{ weight_class.id }}</td>
-            <td>{{ weight_class.class_name }}</td>
+            <td>{{ weight_class.id }}</td> <!-- Anzeige der ID -->
+            <td>{{ weight_class.class_name }}</td> <!-- Anzeige des Namens der Gewichtsklasse -->
             <td>
-                <a href="/weight-classes/edit/{{ weight_class.id }}" class="btn btn-warning btn-sm">Bearbeiten</a>
+                <a href="/weight-classes/edit/{{ weight_class.id }}" class="btn btn-warning btn-sm">Bearbeiten</a> <!-- Link zum Bearbeiten -->
                 <a href="/weight-classes/delete/{{ weight_class.id }}" class="btn btn-danger btn-sm" 
                    onclick="return confirm('Sind Sie sicher, dass Sie diese Gewichtsklasse löschen möchten?');">
                     Löschen
-                </a>
+                </a> <!-- Link zum Löschen mit Bestätigungsdialog -->
             </td>
         </tr>
         {% else %}
         <tr>
-            <td colspan="3" class="text-center">Keine Gewichtsklassen gefunden.</td>
+            <td colspan="3" class="text-center">Keine Gewichtsklassen gefunden.</td> <!-- Nachricht, wenn keine Gewichtsklassen existieren -->
         </tr>
         {% endfor %}
     </tbody>
 </table>
 
-<a href="/weight-classes/create" class="btn btn-success">Neue Gewichtsklasse hinzufügen</a>
+<a href="/weight-classes/create" class="btn btn-success">Neue Gewichtsklasse hinzufügen</a> <!-- Button zum Hinzufügen einer neuen Gewichtsklasse -->
 {% endblock %}
+
+{#
+Beschreibung:
+- Dieses Template zeigt eine Übersicht aller Gewichtsklassen in einer Tabelle.
+- Für jede Gewichtsklasse werden ihre ID, ihr Name und Aktionen (Bearbeiten, Löschen) angezeigt.
+- Falls keine Gewichtsklassen existieren, wird eine entsprechende Nachricht angezeigt.
+- Ein Button am Ende der Seite ermöglicht das Hinzufügen einer neuen Gewichtsklasse.
+#}

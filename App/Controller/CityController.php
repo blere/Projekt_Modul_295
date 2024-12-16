@@ -59,3 +59,19 @@ class CityController extends DefaultController
         $this->redirect("/cities"); // Weiterleitung zur Stadtübersicht
     }
 }
+
+/**
+ * Beschreibung des Codes:
+ * 
+ * - index-Methode:
+ *   Lädt alle Städte aus der Datenbank mittels `City::all()` und übergibt sie an die View `cities-overview.html.twig`, um eine Liste der Städte anzuzeigen.
+ * 
+ * - store-Methode:
+ *   Validiert die Eingabedaten und speichert eine neue Stadt in der Datenbank. Bei fehlendem Namen wird ein Fehler angezeigt. 
+ *   Bei einem erfolgreichen Speichervorgang erfolgt eine Weiterleitung zur Stadtübersicht.
+ *   Fehler beim Speichern werden abgefangen und in der View dargestellt.
+ * 
+ * - delete-Methode:
+ *   Findet und löscht eine Stadt anhand ihrer ID. Wird keine Stadt gefunden oder tritt ein Fehler auf, wird eine Fehlermeldung angezeigt.
+ *   Bei erfolgreicher Löschung erfolgt eine Weiterleitung zur Stadtübersicht.
+ */

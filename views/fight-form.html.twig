@@ -1,11 +1,14 @@
 {% extends "layout.html.twig" %}
 
 {% block content %}
+<!-- Überschrift: Je nach Zustand wird angezeigt, ob ein Kampf bearbeitet oder ein neuer Kampf hinzugefügt wird -->
 <h2 class="text-center">
     {% if fight is defined %}Kampf bearbeiten{% else %}Neuen Kampf hinzufügen{% endif %}
 </h2>
 
+<!-- Formular für die Erstellung oder Bearbeitung eines Kampfes -->
 <form action="{% if fight is defined %}/fights/edit/{{ fight.id }}{% else %}/fights/create{% endif %}" method="POST">
+    <!-- Auswahlfeld für Kämpfer 1 -->
     <div class="mb-3">
         <label for="fighter1_id" class="form-label">Kämpfer 1</label>
         <select id="fighter1_id" name="fighter1_id" class="form-control" required>
@@ -17,6 +20,7 @@
         </select>
     </div>
 
+    <!-- Auswahlfeld für Kämpfer 2 -->
     <div class="mb-3">
         <label for="fighter2_id" class="form-label">Kämpfer 2</label>
         <select id="fighter2_id" name="fighter2_id" class="form-control" required>
@@ -28,6 +32,7 @@
         </select>
     </div>
 
+    <!-- Auswahlfeld für die Arena -->
     <div class="mb-3">
         <label for="arena_id" class="form-label">Arena</label>
         <select id="arena_id" name="arena_id" class="form-control" required>
@@ -39,11 +44,13 @@
         </select>
     </div>
 
+    <!-- Eingabefeld für das Datum des Kampfes -->
     <div class="mb-3">
         <label for="date" class="form-label">Datum</label>
         <input type="date" id="date" name="date" class="form-control" value="{% if fight is defined %}{{ fight.date }}{% endif %}" required>
     </div>
 
+    <!-- Auswahlfeld für die Kontaktart -->
     <div class="mb-3">
         <label for="contact_type" class="form-label">Kontaktart</label>
         <select id="contact_type" name="contact_type" class="form-control" required>
@@ -52,11 +59,27 @@
         </select>
     </div>
 
+    <!-- Eingabefeld für das Ergebnis -->
     <div class="mb-3">
         <label for="result" class="form-label">Ergebnis</label>
         <input type="text" id="result" name="result" class="form-control" value="{% if fight is defined %}{{ fight.result }}{% endif %}">
     </div>
 
-    <button type="submit" class="btn btn-primary">{% if fight is defined %}Änderungen speichern{% else %}Kampf hinzufügen{% endif %}</button>
+    <!-- Button zum Speichern oder Hinzufügen des Kampfes -->
+    <button type="submit" class="btn btn-primary">
+        {% if fight is defined %}Änderungen speichern{% else %}Kampf hinzufügen{% endif %}
+    </button>
 </form>
 {% endblock %}
+
+{#
+Beschreibung:
+- Dieses Template wird für die Erstellung oder Bearbeitung eines Kampfes verwendet.
+- Es enthält:
+  - Auswahlfelder für die Kämpfer 1 und 2.
+  - Ein Auswahlfeld für die Arena.
+  - Ein Datumsfeld für das Kampfdatum.
+  - Ein Auswahlfeld für die Kontaktart (Leichtkontakt oder Vollkontakt).
+  - Ein Textfeld für das Ergebnis (optional).
+- Je nach Zustand (Kampf definiert oder nicht) werden die Felder mit bestehenden Werten gefüllt oder leer angezeigt.
+#}
